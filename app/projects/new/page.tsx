@@ -14,7 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import UploadDropzone from '@/components/UploadDropzone';
-import { PhotoCategory } from '@/lib/schema';
+import { PhotoCategory, PhotoCategoryType } from '@/lib/schema';
 
 export default function NewProject() {
   const router = useRouter();
