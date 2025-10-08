@@ -45,15 +45,15 @@ export async function POST(request: NextRequest) {
       capaciteit: project.capaciteit,
       soortVerharding: project.soortVerharding,
       boringNoodzakelijk: project.boringNoodzakelijk,
-      traceBeschrijving: project.traceBeschrijving,
-      kruisingen: project.kruisingen,
-      obstakels: project.obstakels,
+      traceBeschrijving: project.traceBeschrijving || undefined,
+      kruisingen: project.kruisingen || undefined,
+      obstakels: project.obstakels || undefined,
       buurtInformeren: project.buurtInformeren,
       wegafzettingNodig: project.wegafzettingNodig,
       vergunningen: typeof project.vergunningen === 'string' 
         ? JSON.parse(project.vergunningen) 
         : project.vergunningen,
-      bijzondereRisicos: project.bijzondereRisicos
+      bijzondereRisicos: project.bijzondereRisicos || undefined
     };
 
     // Bereid foto metadata voor
