@@ -455,7 +455,7 @@ export default function ProjectDetail() {
 
 ## 2. BESTAANDE SITUATIE
 **Kabellengte:** ${project.kabellengte} meter
-**Nutsvoorzieningen:** ${typeof project.nutsvoorzieningen === 'string' ? JSON.parse(project.nutsvoorzieningen).join(', ') : (Array.isArray(project.nutsvoorzieningen) ? project.nutsvoorzieningen.join(', ') : 'Niet opgegeven')}
+**Nutsvoorzieningen:** ${typeof project.nutsvoorzieningen === 'string' ? JSON.parse(project.nutsvoorzieningen).join(', ') : (Array.isArray(project.nutsvoorzieningen) ? (project.nutsvoorzieningen as string[]).join(', ') : 'Niet opgegeven')}
 **Soort aansluiting:** ${project.soortAansluiting}
 **Capaciteit:** ${project.capaciteit}
 **Soort verharding:** ${project.soortVerharding}
