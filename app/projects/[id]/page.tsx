@@ -32,7 +32,9 @@ interface Project {
   kruisingen?: string;
   obstakels?: string;
   buurtInformeren: boolean;
+  buurtNotitie?: string;
   wegafzettingNodig: boolean;
+  wegafzettingPeriode?: string;
   vergunningen?: string;
   bijzondereRisicos?: string;
   uitvoerder: string;
@@ -83,14 +85,24 @@ export default function ProjectDetail() {
 
   const fetchProject = useCallback(async () => {
     try {
+      setLoading(true);
+      setError(null);
+      
       const response = await fetch(`/api/projects/${projectId}`);
       if (!response.ok) {
-        throw new Error('Project niet gevonden');
+        throw new Error(`HTTP ${response.status}: Project niet gevonden`);
       }
+      
       const data = await response.json();
+      
+      if (!data.project) {
+        throw new Error('Geen project data ontvangen');
+      }
+      
       setProject(data.project);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Onbekende fout');
+      // Fetch project error occurred
+      setError(err instanceof Error ? err.message : 'Onbekende fout bij ophalen project');
     } finally {
       setLoading(false);
     }
