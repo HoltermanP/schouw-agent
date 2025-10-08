@@ -74,7 +74,7 @@ export const KeyValueList: React.FC<KeyValueListProps> = ({
               ) : (
                 <Text style={[
                   styles.value,
-                  typeof item.value === 'number' && styles.valueMono,
+                  ...(typeof item.value === 'number' ? [styles.valueMono] : []),
                 ]}>
                   {typeof item.value === 'boolean' 
                     ? (item.value ? 'Ja' : 'Nee')
