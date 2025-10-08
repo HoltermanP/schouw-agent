@@ -451,7 +451,7 @@ export default function NewProject() {
               'omgevingssituatie',
               'sleuf',
               'bijzonderheden',
-            ] as PhotoCategory[]).map((cat) => (
+            ] as PhotoCategoryType[]).map((cat) => (
               <div key={cat}>
                 <UploadDropzone
                   category={cat}
