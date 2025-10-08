@@ -22,13 +22,16 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'text/plain', 'application/json'];
+    const allowedFileTypes = [
+      'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 
+      'text/plain', 'application/json', 'application/octet-stream'
+    ];
     const maxSize = 10 * 1024 * 1024; // 10MB
 
     for (const file of files) {
       // Check file type by extension as fallback
       const extension = file.name.split('.').pop()?.toLowerCase();
-      const isImageByExtension = ['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(extension || '');
+      const isImageByExtension = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'svg'].includes(extension || '');
       const isAllowedType = allowedFileTypes.includes(file.type) || isImageByExtension;
       
       // For testing, allow all file types

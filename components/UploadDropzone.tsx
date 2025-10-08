@@ -82,6 +82,7 @@ export default function UploadDropzone({
 
     } catch (error) {
       // File processing error occurred
+      console.error('Upload error:', error);
       alert(error instanceof Error ? error.message : 'Upload gefaald');
     } finally {
       setUploading(false);
