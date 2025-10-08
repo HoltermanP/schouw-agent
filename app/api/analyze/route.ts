@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
@@ -21,14 +25,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Project niet gevonden' }, { status: 404 });
     }
 
-    // Controleer OpenAI API key
-    if (!process.env.OPENAI_API_KEY) {
-      return NextResponse.json({ 
-        error: 'OpenAI API key niet geconfigureerd. Controleer je environment variabelen.' 
-      }, { status: 500 });
-    }
-
-    // Simpele fallback analyse (zonder externe API calls tijdens build)
+    // Simpele fallback analyse (geen externe API calls)
     const analysis = {
       findings: [
         {
@@ -85,7 +82,6 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    // Analysis error occurred
     return NextResponse.json(
       { error: 'AI-analyse gefaald. Probeer het opnieuw.' },
       { status: 500 }

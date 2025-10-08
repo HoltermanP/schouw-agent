@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 // import { extractEXIFData } from '@/lib/exif';
 // import { extractTextFromImage } from '@/lib/ocr';
 
