@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -81,11 +81,7 @@ export default function ProjectDetail() {
   const [analyzing, setAnalyzing] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    fetchProject();
-  }, [projectId, fetchProject]);
-
-  const fetchProject = async () => {
+  const fetchProject = useCallback(async () => {
     try {
       const response = await fetch(`/api/projects/${projectId}`);
       if (!response.ok) {
@@ -98,7 +94,11 @@ export default function ProjectDetail() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [projectId]);
+
+  useEffect(() => {
+    fetchProject();
+  }, [fetchProject]);
 
   const handlePhotoUpload = async (category: PhotoCategoryType, files: File[]) => {
     if (!project) return;
