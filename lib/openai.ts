@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import type { AIAnalysis } from './schema';
+import { aiAnalysisSchema } from './schema';
 import { ALL_CHECKLISTS } from './checklist';
 
 const openai = new OpenAI({
@@ -162,7 +163,7 @@ Geef je antwoord als JSON in het volgende formaat:
     const analysis = JSON.parse(response);
     
     // Valideer tegen schema
-    return AIAnalysis.parse(analysis);
+    return aiAnalysisSchema.parse(analysis);
 
   } catch (error) {
     // OpenAI API error occurred
