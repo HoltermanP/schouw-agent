@@ -94,7 +94,6 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({
             <Image
               src={foto.uri}
               style={styles.image}
-              alt=""
             />
             <View style={styles.caption}>
               <Text style={styles.categorie}>
