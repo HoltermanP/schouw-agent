@@ -60,8 +60,8 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({
 }) => {
   const titleStyle = [
     styles.title,
-    level === 2 && styles.level2,
-    level === 3 && styles.level3,
+    ...(level === 2 ? [styles.level2] : []),
+    ...(level === 3 ? [styles.level3] : []),
   ];
 
   return (
