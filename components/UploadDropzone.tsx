@@ -44,17 +44,28 @@ export default function UploadDropzone({
       formData.append('category', category);
       acceptedFiles.forEach(file => formData.append('files', file));
 
+      console.log('Uploading files:', { 
+        projectId: '1', 
+        category, 
+        filesCount: acceptedFiles.length,
+        fileNames: acceptedFiles.map(f => f.name)
+      });
+
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
 
+      console.log('Upload response status:', response.status);
+
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('Upload error:', errorData);
         throw new Error(errorData.error || 'Upload gefaald');
       }
 
       const result = await response.json();
+      console.log('Upload result:', result);
       
       // Create preview URLs for uploaded files
       const newFiles: UploadedFile[] = result.files.map((uploadedFile: any) => ({

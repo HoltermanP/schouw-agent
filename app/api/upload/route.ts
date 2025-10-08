@@ -13,8 +13,13 @@ export async function POST(request: NextRequest) {
     const category = formData.get('category') as string;
     const files = formData.getAll('files') as File[];
 
+    console.log('Upload request:', { projectId, category, filesCount: files.length });
+
     if (!projectId || !category || !files || files.length === 0) {
-      return NextResponse.json({ error: 'Missing form data' }, { status: 400 });
+      return NextResponse.json({ 
+        error: 'Missing form data',
+        details: { projectId, category, filesCount: files.length }
+      }, { status: 400 });
     }
 
     const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
@@ -36,45 +41,61 @@ export async function POST(request: NextRequest) {
 
     // Create upload directory
     const uploadDir = join(process.cwd(), 'public', 'uploads', projectId, category);
-    await mkdir(uploadDir, { recursive: true });
+    
+    try {
+      await mkdir(uploadDir, { recursive: true });
+      console.log('Created upload directory:', uploadDir);
+    } catch (error) {
+      console.error('Error creating directory:', error);
+      throw new Error('Kon upload directory niet aanmaken');
+    }
 
     const uploadedFiles = [];
 
     for (const file of files) {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+      try {
+        const bytes = await file.arrayBuffer();
+        const buffer = Buffer.from(bytes);
 
-      // Generate unique filename
-      const timestamp = Date.now();
-      const extension = file.name.split('.').pop();
-      const filename = `${timestamp}-${Math.random().toString(36).substring(2)}.${extension}`;
-      const filepath = join(uploadDir, filename);
+        // Generate unique filename
+        const timestamp = Date.now();
+        const extension = file.name.split('.').pop();
+        const filename = `${timestamp}-${Math.random().toString(36).substring(2)}.${extension}`;
+        const filepath = join(uploadDir, filename);
 
-      // Write file to disk
-      await writeFile(filepath, buffer);
+        console.log('Writing file:', { filename, filepath, size: buffer.length });
 
-      // Extract basic file info
-      const exifData = {
-        filename: file.name,
-        size: file.size,
-        type: file.type,
-        lastModified: file.lastModified,
-        uploadedAt: new Date().toISOString()
-      };
+        // Write file to disk
+        await writeFile(filepath, buffer);
 
-      // Mock OCR text (in real implementation, use Tesseract.js)
-      const ocrText = `OCR tekst voor ${file.name} - ${category}`;
+        // Extract basic file info
+        const exifData = {
+          filename: file.name,
+          size: file.size,
+          type: file.type,
+          lastModified: file.lastModified,
+          uploadedAt: new Date().toISOString()
+        };
 
-      uploadedFiles.push({
-        filename,
-        url: `/uploads/${projectId}/${category}/${filename}`,
-        category,
-        exifData: JSON.stringify(exifData),
-        ocrText: ocrText,
-        originalName: file.name,
-        size: file.size,
-        type: file.type
-      });
+        // Mock OCR text (in real implementation, use Tesseract.js)
+        const ocrText = `OCR tekst voor ${file.name} - ${category}`;
+
+        uploadedFiles.push({
+          filename,
+          url: `/uploads/${projectId}/${category}/${filename}`,
+          category,
+          exifData: JSON.stringify(exifData),
+          ocrText: ocrText,
+          originalName: file.name,
+          size: file.size,
+          type: file.type
+        });
+
+        console.log('File uploaded successfully:', filename);
+      } catch (fileError) {
+        console.error('Error uploading file:', file.name, fileError);
+        throw new Error(`Kon bestand ${file.name} niet uploaden`);
+      }
     }
 
     return NextResponse.json({
