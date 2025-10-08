@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatFileSize } from '@/lib/utils';
-import { PhotoCategory } from '@/lib/schema';
+import { PhotoCategory, PhotoCategoryType } from '@/lib/schema';
 import Image from 'next/image';
 
 interface UploadedFile {
@@ -17,7 +17,7 @@ interface UploadedFile {
 }
 
 interface UploadDropzoneProps {
-  category: PhotoCategory;
+  category: PhotoCategoryType;
   onFilesUploaded: (files: UploadedFile[]) => void;
   maxFiles?: number;
   maxSize?: number;
