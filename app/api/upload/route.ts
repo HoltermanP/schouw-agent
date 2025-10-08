@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
+import { existsSync } from 'fs';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -78,6 +79,11 @@ export async function POST(request: NextRequest) {
 
         // Write file to disk
         await writeFile(filepath, buffer);
+        
+        // Verify file was written
+        if (!existsSync(filepath)) {
+          throw new Error(`Bestand ${filename} kon niet worden opgeslagen`);
+        }
 
         // Extract basic file info
         const exifData = {
@@ -115,10 +121,12 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
+    console.error('Upload error:', error);
     return NextResponse.json(
       { 
         error: 'Upload gefaald. Probeer het opnieuw.',
-        details: error instanceof Error ? error.message : 'Onbekende fout'
+        details: error instanceof Error ? error.message : 'Onbekende fout',
+        stack: error instanceof Error ? error.stack : undefined
       },
       { status: 500 }
     );

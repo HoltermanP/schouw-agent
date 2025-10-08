@@ -61,7 +61,7 @@ export default function UploadDropzone({
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Upload error:', errorData);
-        throw new Error(errorData.error || 'Upload gefaald');
+        throw new Error(errorData.error || `Upload gefaald (${response.status})`);
       }
 
       const result = await response.json();
