@@ -71,7 +71,7 @@ export default function UploadDropzone({
           file,
           preview,
           exifData,
-          ocrText
+          ocrText: ocrText || undefined
         });
       }
 
