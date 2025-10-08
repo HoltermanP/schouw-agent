@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Maak upload directory
-    const uploadDir = join(process.cwd(), 'uploads', projectId, category);
+    // Maak upload directory (serveerbaar via Next static): public/uploads/<projectId>/<category>
+    const uploadDir = join(process.cwd(), 'public', 'uploads', projectId, category);
     await mkdir(uploadDir, { recursive: true });
 
     const uploadedFiles = [];

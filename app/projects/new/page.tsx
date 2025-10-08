@@ -13,6 +13,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
+import UploadDropzone from '@/components/UploadDropzone';
+import { PhotoCategory } from '@/lib/schema';
 
 export default function NewProject() {
   const router = useRouter();
@@ -40,6 +42,8 @@ export default function NewProject() {
 
   const watchedUtilities = watch('nutsvoorzieningen');
 
+  const [pendingUploads, setPendingUploads] = useState<Record<string, File[]>>({});
+
   const onSubmit = async (data: Project) => {
     setLoading(true);
     setError(null);
@@ -59,8 +63,27 @@ export default function NewProject() {
         throw new Error(result.error || 'Project aanmaken gefaald');
       }
 
+      // Indien er bestanden klaarstaan: uploaden per categorie
+      const projectId = result.project.id as number;
+      const categories = Object.keys(pendingUploads);
+      for (const category of categories) {
+        const files = pendingUploads[category];
+        if (!files || files.length === 0) continue;
+
+        const formData = new FormData();
+        formData.append('projectId', String(projectId));
+        formData.append('category', category);
+        files.forEach((file) => formData.append('files', file));
+
+        try {
+          await fetch('/api/upload', { method: 'POST', body: formData });
+        } catch (e) {
+          console.error('Upload mislukt voor', category, e);
+        }
+      }
+
       // Redirect naar project detail pagina
-      router.push(`/projects/${result.project.id}`);
+      router.push(`/projects/${projectId}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Onbekende fout');
     } finally {
@@ -409,6 +432,39 @@ export default function NewProject() {
                 )}
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Foto's toevoegen (optioneel) */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Foto's toevoegen (optioneel)</CardTitle>
+            <CardDescription>
+              Voeg alvast foto's toe per categorie. Upload start na het aanmaken van het project.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {([
+              'meterkast',
+              'gebouw',
+              'locatie',
+              'omgevingssituatie',
+              'sleuf',
+              'bijzonderheden',
+            ] as PhotoCategory[]).map((cat) => (
+              <div key={cat}>
+                <UploadDropzone
+                  category={cat}
+                  onFilesUploaded={(files) => {
+                    setPendingUploads((prev) => ({
+                      ...prev,
+                      [cat]: files.map((f) => f.file),
+                    }));
+                  }}
+                  maxFiles={10}
+                />
+              </div>
+            ))}
           </CardContent>
         </Card>
 
