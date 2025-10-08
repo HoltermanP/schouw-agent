@@ -63,7 +63,7 @@ export const KeyValueList: React.FC<KeyValueListProps> = ({
   return (
     <View style={containerStyle}>
       {items.map((item, index) => {
-        const itemStyle = isTwoColumn ? [styles.twoColumnItem] : {};
+        const itemStyle = isTwoColumn ? [styles.twoColumnItem] : [];
         
         return (
           <View key={index} style={[styles.row, ...itemStyle]}>
