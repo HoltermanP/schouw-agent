@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id                Int      @id @default(autoincrement())
+  naam              String
+  code              String   @unique
+  opdrachtgever     String
+  adres             String
+  postcode          String
+  plaats            String
+  latitude          Float?
+  longitude         Float?
+  kabellengte       Float
+  nutsvoorzieningen String   // JSON string: ["elektra", "gas", "water"]
+  soortAansluiting  String   // "nieuw", "verzwaren", "vervangen", "tijdelijk"
+  capaciteit        Float
+  soortVerharding   String   // "klinkers", "asfalt", "tegels", "onverhard"
+  boringNoodzakelijk Boolean
+  traceBeschrijving String?
+  kruisingen        String?
+  obstakels         String?
+  buurtInformeren   Boolean
+  buurtNotitie      String?
+  wegafzettingNodig Boolean
+  wegafzettingPeriode String?
+  vergunningen      String?  // JSON string: ["KLIC", "gemeente", etc.]
+  bijzondereRisicos String?
+  uitvoerder        String
+  toezichthouder    String
+  bereikbaarheden   String
+  photos            Photo[]
+  inspections       Inspection[]
+  reports           Report[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Photo {
+  id        Int      @id @default(autoincrement())
+  projectId Int
+  url       String
+  categorie String   // "meterkast", "gebouw", "locatie", "omgevingssituatie", "sleuf", "bijzonderheden"
+  exifData  String?  // JSON string with EXIF data
+  ocrText   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Inspection {
+  id        Int      @id @default(autoincrement())
+  projectId Int
+  findings  String   // JSON string with AI analysis findings
+  risks     String   // JSON string with identified risks
+  actions   String   // JSON string with recommended actions
+  citations String   // JSON string with source citations
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  projectId Int
+  content   String   // HTML content of the report
+  pdfUrl    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schouw Rapport - Test Project</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #2563eb;
+            font-size: 28px;
+            margin: 0;
+        }
+        .project-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #1e40af;
+            font-size: 18px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9fafb;
+            border-left: 4px solid #3b82f6;
+        }
+        .status-conform { color: #059669; font-weight: bold; }
+        .status-niet-conform { color: #dc2626; font-weight: bold; }
+        .status-onbekend { color: #d97706; font-weight: bold; }
+        .priority-hoog { color: #dc2626; font-weight: bold; }
+        .priority-midden { color: #d97706; font-weight: bold; }
+        .priority-laag { color: #059669; font-weight: bold; }
+        .summary {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+        }
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .print-button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">📄 Print PDF</button>
+    
+    <div class="header">
+        <h1>SCHOUW RAPPORT</h1>
+    </div>
+
+    <div class="project-info">
+        <h2>Project Informatie</h2>
+        <p><strong>Project:</strong> Test Project</p>
+        <p><strong>Code:</strong> TEST-001</p>
+        <p><strong>Locatie:</strong> Test Straat 1, 1234 AB Test Stad</p>
+        <p><strong>Opdrachtgever:</strong> Test Opdrachtgever</p>
+        <p><strong>Datum:</strong> 7 oktober 2024</p>
+        
+        
+    </div>
+
+    <div class="section">
+        <h2>Nutsvoorzieningen</h2>
+        <div class="item">
+            <p>✓ <strong>Elektra:</strong> Ja</p>
+        </div>
+        <div class="item">
+            <p>✓ <strong>Gas:</strong> Ja</p>
+        </div>
+        <div class="item">
+            <p>✓ <strong>Water:</strong> Ja</p>
+        </div>
+        
+        
+        
+    </div>
+
+    <div class="section">
+        <h2>Civiele Aspecten</h2>
+        <div class="item">
+            <p><strong>Verharding:</strong> asfalt</p>
+        </div>
+        <div class="item">
+            <p>✓ <strong>Boring:</strong> Ja</p>
+        </div>
+        <div class="item">
+            <p>✓ <strong>Buurt informeren:</strong> Ja</p>
+        </div>
+        <div class="item">
+            <p>✓ <strong>Wegafzetting:</strong> Ja</p>
+        </div>
+        
+        
+        
+        
+    </div>
+
+    <div class="section">
+        <h2>Bevindingen (0 items)</h2>
+        <p>(Geen bevindingen)</p>
+    </div>
+
+    <div class="section">
+        <h2>Checklist (0 items)</h2>
+        <p>(Geen checklist items)</p>
+    </div>
+
+    <div class="section">
+        <h2>Foto's (0 items)</h2>
+        <p>(Geen foto's)</p>
+    </div>
+
+    <div class="section">
+        <h2>Vergunningen</h2>
+        <p>(Geen vergunningen vereist)</p>
+    </div>
+
+    <div class="section">
+        <h2>Materiaal</h2>
+        <p>(Geen materiaal gespecificeerd)</p>
+    </div>
+
+    <div class="section">
+        <h2>Actiepunten (0 items)</h2>
+        <p>(Geen actiepunten)</p>
+    </div>
+
+    <div class="summary">
+        <h2>Samenvatting</h2>
+        <p>Test samenvatting</p>
+    </div>
+
+    
+
+    <div class="section">
+        <h2>Bronnen</h2>
+        <p>(Geen bronnen)</p>
+    </div>
+
+    <div class="footer">
+        <p>Rapport gegenereerd op: 7-10-2025 22:31:47</p>
+    </div>
+</body>
+</html>

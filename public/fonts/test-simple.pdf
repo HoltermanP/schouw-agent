@@ -1,0 +1,104 @@
+
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+  /Font <<
+    /F1 5 0 R
+  >>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 500
+>>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+(Schouw Rapport - Test Project) Tj
+0 -20 Td
+(Project Code: TEST-001) Tj
+0 -20 Td
+(Locatie: Test Straat 1, 1234 AB Test Stad) Tj
+0 -20 Td
+(Opdrachtgever: Test Opdrachtgever) Tj
+0 -20 Td
+(Datum: 7-10-2024) Tj
+0 -40 Td
+(Nutsvoorzieningen:) Tj
+0 -20 Td
+(Elektra: Ja) Tj
+0 -20 Td
+(Gas: Ja) Tj
+0 -20 Td
+(Water: Ja) Tj
+0 -40 Td
+(Civiele aspecten:) Tj
+0 -20 Td
+(Verharding: asfalt) Tj
+0 -20 Td
+(Boring: Ja) Tj
+0 -20 Td
+(Buurt informeren: Ja) Tj
+0 -20 Td
+(Wegafzetting: Ja) Tj
+0 -40 Td
+(Bevindingen: 0 items) Tj
+0 -20 Td
+(Checklist: 0 items) Tj
+0 -20 Td
+(Foto's: 0 items) Tj
+0 -40 Td
+(Samenvatting:) Tj
+0 -20 Td
+(Test samenvatting) Tj
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000000826 00000 n 
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+895
+%%EOF

@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schouw Rapport - Aansluiting woonwijk De Vliert</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.4;
+            color: #1f2937;
+            font-size: 12px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #1e40af;
+            font-size: 22px;
+            margin: 0;
+            font-weight: 700;
+        }
+        .project-info {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #1e40af;
+            font-size: 14px;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .item {
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #f9fafb;
+            border-left: 3px solid #3b82f6;
+            border-radius: 3px;
+        }
+        .status-conform { color: #059669; font-weight: 600; }
+        .status-niet-conform { color: #dc2626; font-weight: 600; }
+        .status-onbekend { color: #d97706; font-weight: 600; }
+        .priority-hoog { color: #dc2626; font-weight: 600; }
+        .priority-midden { color: #d97706; font-weight: 600; }
+        .priority-laag { color: #059669; font-weight: 600; }
+        .summary {
+            background: #eff6ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #3b82f6;
+            margin: 15px 0;
+        }
+        .footer {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 10px;
+            color: #6b7280;
+            text-align: center;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .compact-item {
+            padding: 6px 8px;
+            background: #f8fafc;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            font-size: 11px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-conform { background: #dcfce7; color: #166534; }
+        .badge-niet-conform { background: #fee2e2; color: #991b1b; }
+        .badge-onbekend { background: #fef3c7; color: #92400e; }
+        .badge-hoog { background: #fee2e2; color: #991b1b; }
+        .badge-midden { background: #fef3c7; color: #92400e; }
+        .badge-laag { background: #dcfce7; color: #166534; }
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .print-button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">📄 Print PDF</button>
+    
+    <div class="header">
+        <h1>SCHOUW RAPPORT</h1>
+    </div>
+
+    <div class="project-info">
+        <h2>Project Informatie</h2>
+        <div class="grid-2">
+            <div class="compact-item"><strong>Project:</strong> Aansluiting woonwijk De Vliert</div>
+            <div class="compact-item"><strong>Code:</strong> SCH-2024-DEMO</div>
+            <div class="compact-item"><strong>Locatie:</strong> Vliertlaan 123, 2514 AB Den Haag</div>
+            <div class="compact-item"><strong>Opdrachtgever:</strong> Gemeente Den Haag</div>
+            <div class="compact-item"><strong>Datum:</strong> 7 oktober 2024</div>
+            <div class="compact-item"><strong>Uitvoerder:</strong> Bouwbedrijf Van der Berg BV</div>
+            <div class="compact-item"><strong>Toezichthouder:</strong> Jan de Vries - Liander</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nutsvoorzieningen</h2>
+        <div class="grid-3">
+            <div class="compact-item">✓ <strong>Elektra:</strong> Ja</div>
+            <div class="compact-item">✓ <strong>Gas:</strong> Ja</div>
+            <div class="compact-item">✓ <strong>Water:</strong> Ja</div>
+            <div class="compact-item"><strong>Capaciteit:</strong> 25 kW</div>
+            <div class="compact-item"><strong>Kabellengte:</strong> 150.5 meter</div>
+            <div class="compact-item"><strong>Soort aansluiting:</strong> nieuw</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Civiele Aspecten</h2>
+        <div class="grid-2">
+            <div class="compact-item"><strong>Verharding:</strong> asfalt</div>
+            <div class="compact-item">✓ <strong>Boring:</strong> Ja</div>
+            <div class="compact-item">✓ <strong>Buurt informeren:</strong> Ja</div>
+            <div class="compact-item">✓ <strong>Wegafzetting:</strong> Ja</div>
+            <div class="compact-item"><strong>Wegafzetting periode:</strong> 2 weken tijdens graafwerkzaamheden</div>
+            <div class="compact-item"><strong>Trace beschrijving:</strong> Nieuwe aansluiting vanaf hoofdstraat naar woonwijk</div>
+            <div class="compact-item"><strong>Kruisingen:</strong> Kruising met bestaande gasleiding</div>
+            <div class="compact-item"><strong>Obstakels:</strong> Boomwortels van 3 oude eiken</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Bevindingen (1 items)</h2>
+        
+            <div class="item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h3 style="margin: 0; font-size: 13px;">1. Meterkast afmetingen</h3>
+                    <div>
+                        <span class="badge badge-conform">✓ CONFORM</span>
+                        <span class="badge badge-midden">🟡 MIDDEN</span>
+                    </div>
+                </div>
+                <p style="margin: 0; font-size: 11px;"><strong>Toelichting:</strong> Meterkast voldoet aan afmetingen</p>
+                <p style="margin: 4px 0 0 0; font-size: 10px; color: #6b7280;"><strong>Bron:</strong> Liander richtlijnen</p>
+            </div>
+        
+    </div>
+
+    <div class="section">
+        <h2>Checklist (1 items)</h2>
+        
+            <div class="item">
+                <h3>1. Meterkast - Afmetingen minimaal 0.6m</h3>
+                <p><strong>Status:</strong> <span class="status-conform">✓ CONFORM</span></p>
+                <p><strong>Opmerking:</strong> Voldoet aan eisen</p>
+                <p><strong>Bron:</strong> Liander richtlijnen</p>
+            </div>
+        
+    </div>
+
+    <div class="section">
+        <h2>Foto's (1 items)</h2>
+        
+            <div class="item">
+                <h3>1. Meterkast overzicht (meterkast)</h3>
+                <p><strong>Bestand:</strong> meterkast-1.jpg</p>
+                <p><strong>Datum:</strong> 7 oktober 2024</p>
+                <p><strong>OCR:</strong> Hoofdschakelaar 25A...</p>
+            </div>
+        
+    </div>
+
+    <div class="section">
+        <h2>Vergunningen</h2>
+        <div class="item"><p>- KLIC vergunning</p></div>
+    </div>
+
+    <div class="section">
+        <h2>Materiaal</h2>
+        <div class="item"><p>- Gasleiding PE 32mm</p></div>
+    </div>
+
+    <div class="section">
+        <h2>Actiepunten (1 items)</h2>
+        
+            <div class="item">
+                <h3>1. Sleuf verdiepen</h3>
+                <p><strong>Verantwoordelijke:</strong> Uitvoerder</p>
+                <p><strong>Deadline:</strong> Invalid Date</p>
+                <p><strong>Status:</strong> OPEN</p>
+                <p><strong>Prioriteit:</strong> <span class="priority-hoog">🔴 HOOG</span></p>
+                <p><strong>Beschrijving:</strong> Sleuf verdiepen tot 0.8m</p>
+            </div>
+        
+    </div>
+
+    <div class="summary">
+        <h2>Samenvatting</h2>
+        <p>Het project kan doorgang vinden na aanpassing van de sleufdiepte</p>
+    </div>
+
+    
+
+    <div class="section">
+        <h2>Bronnen</h2>
+        
+            <div class="item">
+                <p>1. Liander richtlijnen - https://liander.nl</p>
+            </div>
+        
+    </div>
+
+    <div class="footer">
+        <p>Rapport gegenereerd op: 7-10-2025 22:39:20</p>
+    </div>
+</body>
+</html>
