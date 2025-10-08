@@ -38,8 +38,8 @@ export default function Dashboard() {
             adres: project.adres,
             plaats: project.plaats,
             createdAt: project.createdAt,
-            status: project.reports?.length > 0 ? 'voltooid' : 
-                   project.inspections?.length > 0 ? 'in-analyse' : 'nieuw'
+            status: (project.reports && project.reports.length > 0) ? 'voltooid' : 
+                   (project.inspections && project.inspections.length > 0) ? 'in-analyse' : 'nieuw'
           }));
           
           setProjects(mappedProjects);

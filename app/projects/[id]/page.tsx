@@ -232,8 +232,8 @@ export default function ProjectDetail() {
     );
   }
 
-  const latestInspection = project.inspections[0];
-  const latestReport = project.reports[0];
+  const latestInspection = project.inspections?.[0];
+  const latestReport = project.reports?.[0];
 
   return (
     <div className="space-y-6">
@@ -293,7 +293,7 @@ export default function ProjectDetail() {
                     <strong>Capaciteit:</strong> {project.capaciteit}
                   </div>
                   <div>
-                    <strong>Nutsvoorzieningen:</strong> {typeof project.nutsvoorzieningen === 'string' ? JSON.parse(project.nutsvoorzieningen).join(', ') : project.nutsvoorzieningen}
+                    <strong>Nutsvoorzieningen:</strong> {typeof project.nutsvoorzieningen === 'string' ? JSON.parse(project.nutsvoorzieningen).join(', ') : (Array.isArray(project.nutsvoorzieningen) ? (project.nutsvoorzieningen as string[]).join(', ') : 'Niet opgegeven')}
                   </div>
                   <div>
                     <strong>Aansluiting:</strong> {project.soortAansluiting}
