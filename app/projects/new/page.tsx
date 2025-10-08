@@ -94,7 +94,7 @@ export default function NewProject() {
   const handleUtilityChange = (utility: string, checked: boolean) => {
     const current = watchedUtilities || [];
     if (checked) {
-      setValue('nutsvoorzieningen', [...current, utility]);
+      setValue('nutsvoorzieningen', [...current, utility as 'elektra' | 'gas' | 'water']);
     } else {
       setValue('nutsvoorzieningen', current.filter(u => u !== utility));
     }
