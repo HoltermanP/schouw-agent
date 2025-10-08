@@ -12,7 +12,7 @@ import ChecklistView from '@/components/ChecklistView';
 import ReportEditor from '@/components/ReportEditor';
 import PdfButton from '@/components/PdfButton';
 import { formatDate } from '@/lib/utils';
-import { PhotoCategory } from '@/lib/schema';
+import { PhotoCategory, PhotoCategoryType } from '@/lib/schema';
 
 interface Project {
   id: number;
@@ -100,7 +100,7 @@ export default function ProjectDetail() {
     }
   };
 
-  const handlePhotoUpload = async (category: PhotoCategory, files: File[]) => {
+  const handlePhotoUpload = async (category: PhotoCategoryType, files: File[]) => {
     if (!project) return;
 
     try {
