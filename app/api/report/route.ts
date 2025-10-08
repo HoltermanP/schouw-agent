@@ -1,17 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
-// import { reportSchema } from '@/lib/schema';
-
-const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Basic validation
     if (!body.projectId || !body.content) {
       return NextResponse.json(
@@ -19,50 +15,22 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    const validatedData = body;
 
-    // Controleer of project bestaat
-    const project = await prisma.project.findUnique({
-      where: { id: validatedData.projectId }
-    });
-
-    if (!project) {
-      return NextResponse.json({ error: 'Project niet gevonden' }, { status: 404 });
-    }
-
-    // Maak of update rapport
-    const existingReport = await prisma.report.findFirst({
-      where: { projectId: validatedData.projectId }
-    });
-
-    const report = existingReport 
-      ? await prisma.report.update({
-          where: { id: existingReport.id },
-          data: { content: validatedData.content }
-        })
-      : await prisma.report.create({
-          data: {
-            projectId: validatedData.projectId,
-            content: validatedData.content
-          }
-        });
+    // Return mock report save response
+    const report = {
+      id: Date.now(),
+      projectId: body.projectId,
+      content: body.content,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
 
     return NextResponse.json({
-      success: true,
       report,
-      message: 'Rapport succesvol opgeslagen'
+      message: 'Rapport succesvol opgeslagen (mock)'
     });
 
   } catch (error) {
-    // Report save error occurred
-    
-    if (error instanceof Error && error.name === 'ZodError') {
-      return NextResponse.json(
-        { error: 'Ongeldige invoer. Controleer alle velden.' },
-        { status: 400 }
-      );
-    }
-
     return NextResponse.json(
       { error: 'Rapport opslaan gefaald' },
       { status: 500 }
@@ -79,15 +47,18 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Project ID is verplicht' }, { status: 400 });
     }
 
-    const reports = await prisma.report.findMany({
-      where: { projectId: parseInt(projectId) },
-      orderBy: { createdAt: 'desc' }
-    });
+    // Return mock report data
+    const report = {
+      id: 1,
+      projectId: parseInt(projectId),
+      content: 'Mock rapport content',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
 
-    return NextResponse.json({ reports });
+    return NextResponse.json({ report });
 
   } catch (error) {
-    // Reports fetch error occurred
     return NextResponse.json(
       { error: 'Rapporten ophalen gefaald' },
       { status: 500 }
