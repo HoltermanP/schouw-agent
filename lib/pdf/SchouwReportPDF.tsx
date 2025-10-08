@@ -353,7 +353,7 @@ export const SchouwReportPDF: React.FC<SchouwReportPDFProps> = ({ data }) => {
             {acties.map((actie, index) => (
               <View key={index} style={{ marginBottom: tokens.spacing[4], padding: tokens.spacing[3], backgroundColor: tokens.colors.surface, borderRadius: 4 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: tokens.spacing[2] }}>
-                  <StatusPill status={actie.prioriteit === 'hoog' ? 'danger' : actie.prioriteit === 'midden' ? 'warning' : 'info'} />
+                  <StatusPill status={actie.prioriteit === 'hoog' ? 'niet-conform' : actie.prioriteit === 'midden' ? 'waarschuwing' : 'info'} />
                   <Text style={{ fontSize: tokens.fontSize.sm, fontWeight: 600, marginLeft: tokens.spacing[2] }}>
                     {actie.titel}
                   </Text>
