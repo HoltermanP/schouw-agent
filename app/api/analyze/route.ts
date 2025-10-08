@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     const photoMetadata = project.photos.map(photo => ({
       categorie: photo.categorie,
       exifData: photo.exifData ? JSON.parse(photo.exifData) : null,
-      ocrText: photo.ocrText,
+      ocrText: photo.ocrText || undefined,
       filename: photo.url.split('/').pop() || 'unknown'
     }));
 
