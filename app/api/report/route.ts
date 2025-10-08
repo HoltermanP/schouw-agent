@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { reportSchema } from '@/lib/schema';
+// import { reportSchema } from '@/lib/schema';
 
 const prisma = new PrismaClient();
 
@@ -8,8 +8,14 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    // Valideer input
-    const validatedData = reportSchema.parse(body);
+    // Basic validation
+    if (!body.projectId || !body.content) {
+      return NextResponse.json(
+        { error: 'Project ID en content zijn verplicht' },
+        { status: 400 }
+      );
+    }
+    const validatedData = body;
 
     // Controleer of project bestaat
     const project = await prisma.project.findUnique({

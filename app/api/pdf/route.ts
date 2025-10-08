@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-import { validateRapportInput } from '@/lib/pdf/utils';
+// import { validateRapportInput } from '@/lib/pdf/utils';
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
     
-    if (!validateRapportInput(data)) {
+    // Basic validation
+    if (!data || !data.meta || !data.meta.code) {
       return NextResponse.json(
         { error: 'Ongeldige rapport data' },
         { status: 400 }

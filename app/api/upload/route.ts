@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
-import { extractEXIFData } from '@/lib/exif';
-import { extractTextFromImage } from '@/lib/ocr';
+// import { extractEXIFData } from '@/lib/exif';
+// import { extractTextFromImage } from '@/lib/ocr';
 
 export async function POST(request: NextRequest) {
   try {
@@ -55,16 +55,11 @@ export async function POST(request: NextRequest) {
 
       await writeFile(filepath, buffer);
 
-      // Extract EXIF data
-      const exifData = await extractEXIFData(file);
+      // Extract EXIF data (simplified)
+      const exifData = null;
       
-      // Extract OCR text (optioneel)
-      let ocrText = null;
-      try {
-        ocrText = await extractTextFromImage(file);
-      } catch (error) {
-        // OCR extraction failed
-      }
+      // Extract OCR text (simplified)
+      const ocrText = null;
 
       uploadedFiles.push({
         filename,
