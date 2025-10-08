@@ -38,52 +38,44 @@ export default function UploadDropzone({
     setUploading(true);
 
     try {
-      const newFiles: UploadedFile[] = [];
+      // Upload files to server
+      const formData = new FormData();
+      formData.append('projectId', '1'); // Mock project ID
+      formData.append('category', category);
+      acceptedFiles.forEach(file => formData.append('files', file));
 
-      for (const file of acceptedFiles) {
-        // Maak preview URL
-        const preview = URL.createObjectURL(file);
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-        // Extract EXIF data (simplified for demo)
-        let exifData = null;
-        try {
-          // In een echte implementatie zou je hier exifr gebruiken
-          exifData = {
-            filename: file.name,
-            size: file.size,
-            type: file.type,
-            lastModified: file.lastModified
-          };
-        } catch (error) {
-          // EXIF extraction failed
-        }
-
-        // Extract OCR text (simplified for demo)
-        let ocrText = null;
-        try {
-          // In een echte implementatie zou je hier Tesseract.js gebruiken
-          ocrText = null; // Placeholder
-        } catch (error) {
-          // OCR extraction failed
-        }
-
-        newFiles.push({
-          file,
-          preview,
-          exifData,
-          ocrText: ocrText || undefined
-        });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Upload gefaald');
       }
+
+      const result = await response.json();
+      
+      // Create preview URLs for uploaded files
+      const newFiles: UploadedFile[] = result.files.map((uploadedFile: any) => ({
+        file: acceptedFiles.find(f => f.name === uploadedFile.originalName) || new File([], uploadedFile.filename),
+        preview: URL.createObjectURL(acceptedFiles.find(f => f.name === uploadedFile.originalName) || new File([], uploadedFile.filename)),
+        exifData: uploadedFile.exifData,
+        ocrText: uploadedFile.ocrText,
+        url: uploadedFile.url,
+        filename: uploadedFile.filename
+      }));
 
       setUploadedFiles(prev => [...prev, ...newFiles].slice(0, maxFiles));
       onFilesUploaded(newFiles);
 
     } catch (error) {
       // File processing error occurred
+      alert(error instanceof Error ? error.message : 'Upload gefaald');
     } finally {
       setUploading(false);
     }
-  }, [maxFiles, onFilesUploaded]);
+  }, [maxFiles, onFilesUploaded, category]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,

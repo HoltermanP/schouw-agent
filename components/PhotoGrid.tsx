@@ -8,17 +8,21 @@ import { formatDate } from '@/lib/utils';
 import Image from 'next/image';
 
 interface Photo {
-  id: number;
+  id?: number;
   url: string;
   categorie: string;
   exifData?: string;
   ocrText?: string;
-  createdAt: string;
+  createdAt?: string;
+  filename?: string;
+  originalName?: string;
+  size?: number;
+  type?: string;
 }
 
 interface PhotoGridProps {
   photos: Photo[];
-  onDelete?: (photoId: number) => void;
+  onDelete?: (photoId: number | string) => void;
   showMetadata?: boolean;
 }
 
@@ -126,7 +130,7 @@ export default function PhotoGrid({
                         <Button
                           size="sm"
                           variant="destructive"
-                          onClick={() => onDelete(photo.id)}
+                          onClick={() => onDelete && photo.id && onDelete(photo.id)}
                         >
                           Verwijder
                         </Button>
@@ -146,7 +150,7 @@ export default function PhotoGrid({
                 {showMetadata && exifData && (
                   <div className="p-3 space-y-1">
                     <div className="text-xs text-gray-600">
-                      {formatDate(new Date(photo.createdAt))}
+                      {photo.createdAt ? formatDate(new Date(photo.createdAt)) : 'Onbekend'}
                     </div>
                     {exifData.gps && (
                       <div className="text-xs text-gray-500">
@@ -177,7 +181,7 @@ export default function PhotoGrid({
                     {getCategoryIcon(selectedPhoto.categorie)} {selectedPhoto.categorie}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {formatDate(new Date(selectedPhoto.createdAt))}
+                    {selectedPhoto.createdAt ? formatDate(new Date(selectedPhoto.createdAt)) : 'Onbekend'}
                   </p>
                 </div>
                 <Button
