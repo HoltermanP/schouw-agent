@@ -155,7 +155,7 @@ export const SchouwReportPDF: React.FC<SchouwReportPDFProps> = ({ data }) => {
         {/* Status badges */}
         <View style={{ flexDirection: 'row', marginBottom: tokens.spacing[6] }}>
           <StatusPill status="info" label="INITIATIE" />
-          <StatusPill status="warning" label="IN ANALYSE" />
+          <StatusPill status="waarschuwing" label="IN ANALYSE" />
         </View>
       </Page>
 
