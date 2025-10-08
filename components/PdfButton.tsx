@@ -41,10 +41,20 @@ export default function PdfButton({
         throw new Error(errorData.error || 'PDF generatie gefaald');
       }
 
-      // Nieuwe compacte PDF format - genereer HTML en open in nieuw tabblad
+      // Genereer HTML en trigger PDF download
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
+      
+      // Open in nieuw venster voor print-to-PDF functionaliteit
+      const printWindow = window.open(url, '_blank');
+      if (printWindow) {
+        printWindow.onload = () => {
+          // Auto-trigger print dialog voor PDF export
+          setTimeout(() => {
+            printWindow.print();
+          }, 500);
+        };
+      }
       
       if (onGenerate) {
         onGenerate();

@@ -238,8 +238,8 @@ export async function POST(req: NextRequest) {
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Arial', sans-serif; 
-            font-size: 11px; 
-            line-height: 1.4; 
+            font-size: 14px; 
+            line-height: 1.6; 
             color: #333; 
             background: #fff;
         }
@@ -247,7 +247,7 @@ export async function POST(req: NextRequest) {
             width: 210mm; 
             min-height: 297mm; 
             margin: 0 auto; 
-            padding: 15mm; 
+            padding: 20mm; 
             background: white;
         }
         .header { 
@@ -256,61 +256,61 @@ export async function POST(req: NextRequest) {
             margin-bottom: 12px;
         }
         .header h1 { 
-            font-size: 18px; 
+            font-size: 24px; 
             color: #2563eb; 
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
         .header-info { 
-            font-size: 10px; 
+            font-size: 14px; 
             color: #666; 
             display: flex; 
             justify-content: space-between;
         }
         .section { 
-            margin-bottom: 12px; 
+            margin-bottom: 20px; 
             page-break-inside: avoid;
         }
         .section-title { 
-            font-size: 12px; 
+            font-size: 16px; 
             font-weight: bold; 
             color: #2563eb; 
-            border-bottom: 1px solid #e5e7eb; 
-            padding-bottom: 3px; 
-            margin-bottom: 6px;
+            border-bottom: 2px solid #e5e7eb; 
+            padding-bottom: 8px; 
+            margin-bottom: 12px;
         }
         .grid-2 { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 8px; 
-            margin-bottom: 8px;
+            gap: 15px; 
+            margin-bottom: 15px;
         }
         .grid-3 { 
             display: grid; 
             grid-template-columns: 1fr 1fr 1fr; 
-            gap: 6px; 
-            margin-bottom: 8px;
+            gap: 12px; 
+            margin-bottom: 15px;
         }
         .info-item { 
             background: #f8fafc; 
-            padding: 6px; 
-            border-left: 3px solid #2563eb; 
-            font-size: 10px;
+            padding: 12px; 
+            border-left: 4px solid #2563eb; 
+            font-size: 14px;
         }
         .info-label { 
             font-weight: bold; 
             color: #1e40af; 
             display: block; 
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
         .status-badge {
             display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 9px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
             font-weight: bold;
             text-transform: uppercase;
-            margin-right: 4px;
+            margin-right: 6px;
         }
         .status-conform { background: #dcfce7; color: #166534; }
         .status-niet-conform { background: #fee2e2; color: #dc2626; }
@@ -318,14 +318,14 @@ export async function POST(req: NextRequest) {
         .finding-item, .risk-item, .action-item {
             background: #f8fafc;
             border: 1px solid #e5e7eb;
-            padding: 6px;
-            margin-bottom: 6px;
-            font-size: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
         }
         .finding-item h4, .risk-item h4, .action-item h4 {
-            font-size: 11px;
+            font-size: 16px;
             color: #1e40af;
-            margin-bottom: 3px;
+            margin-bottom: 8px;
         }
         .priority-high { border-left: 3px solid #dc2626; }
         .priority-midden { border-left: 3px solid #d97706; }
@@ -525,11 +525,12 @@ export async function POST(req: NextRequest) {
 
     return new NextResponse(htmlContent, {
       headers: {
-        'Content-Type': 'text/html',
-        'Content-Disposition': `attachment; filename="schouwrapport-${project.code}.html"`,
+        'Content-Type': 'text/html; charset=utf-8',
+        'Content-Disposition': `inline; filename="schouwrapport-${project.code}.html"`,
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
+        'X-Frame-Options': 'SAMEORIGIN',
       },
     });
 
