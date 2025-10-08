@@ -3,9 +3,13 @@ import type { AIAnalysis } from './schema';
 import { aiAnalysisSchema } from './schema';
 import { ALL_CHECKLISTS } from './checklist';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const getOpenAI = () => {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY environment variable is not set');
+  }
+  return new OpenAI({ apiKey });
+};
 
 export interface ProjectData {
   naam: string;
@@ -144,7 +148,7 @@ Geef je antwoord als JSON in het volgende formaat:
   ]
 }`;
 
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: process.env.AI_MODEL || 'gpt-4',
       messages: [
         { role: 'system', content: systemPrompt },
@@ -336,7 +340,7 @@ ${photoMetadata.map(p => `- ${p.categorie}: ${p.filename}`).join('\n')}
 Schrijf een compleet, professioneel schouwrapport.`;
 
   try {
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: process.env.AI_MODEL || 'gpt-4',
       messages: [
         { role: 'system', content: systemPrompt },
