@@ -71,10 +71,10 @@ export async function POST(request: NextRequest) {
     const inspection = await prisma.inspection.create({
       data: {
         projectId: project.id,
-        findings: JSON.stringify(analysis.findings),
-        risks: JSON.stringify(analysis.risks),
-        actions: JSON.stringify(analysis.actions),
-        citations: JSON.stringify(analysis.citations)
+        findings: JSON.stringify(analysis.findings || []),
+        risks: JSON.stringify(analysis.risks || []),
+        actions: JSON.stringify(analysis.actions || []),
+        citations: JSON.stringify(analysis.citations || [])
       }
     });
 
