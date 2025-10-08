@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    const allowedFileTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'text/plain'];
     const maxSize = 10 * 1024 * 1024; // 10MB
 
     for (const file of files) {
