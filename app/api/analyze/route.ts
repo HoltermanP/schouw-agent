@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Analysis error:', error);
+    // Analysis error occurred
     return NextResponse.json(
       { error: 'AI-analyse gefaald. Probeer het opnieuw.' },
       { status: 500 }

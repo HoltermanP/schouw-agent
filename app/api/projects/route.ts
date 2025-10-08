@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ projects });
 
   } catch (error) {
-    console.error('Projects fetch error:', error);
+    // Projects fetch error occurred
     return NextResponse.json(
       { error: 'Projecten ophalen gefaald' },
       { status: 500 }
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Project creation error:', error);
+    // Project creation error occurred
     return NextResponse.json(
       { error: 'Project aanmaken gefaald' },
       { status: 500 }

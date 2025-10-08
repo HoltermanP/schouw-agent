@@ -45,7 +45,7 @@ export default function Dashboard() {
           setProjects(mappedProjects);
         }
       } catch (error) {
-        console.error('Error fetching projects:', error);
+        // Error fetching projects
         // Fallback to empty array
         setProjects([]);
       } finally {
@@ -140,7 +140,7 @@ export default function Dashboard() {
                         const url = URL.createObjectURL(blob);
                         window.open(url, '_blank');
                       }).catch(err => {
-                        console.error('PDF error:', err);
+                        // PDF error occurred
                         alert('PDF generatie gefaald');
                       });
                     }}

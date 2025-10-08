@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       try {
         ocrText = await extractTextFromImage(file);
       } catch (error) {
-        console.warn('OCR extraction failed:', error);
+        // OCR extraction failed
       }
 
       uploadedFiles.push({
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Upload error:', error);
+    // Upload error occurred
     return NextResponse.json(
       { error: 'Upload gefaald. Probeer het opnieuw.' },
       { status: 500 }

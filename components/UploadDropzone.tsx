@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatFileSize } from '@/lib/utils';
 import { PhotoCategory } from '@/lib/schema';
+import Image from 'next/image';
 
 interface UploadedFile {
   file: File;
@@ -54,7 +55,7 @@ export default function UploadDropzone({
             lastModified: file.lastModified
           };
         } catch (error) {
-          console.warn('EXIF extraction failed:', error);
+          // EXIF extraction failed
         }
 
         // Extract OCR text (simplified for demo)
@@ -63,7 +64,7 @@ export default function UploadDropzone({
           // In een echte implementatie zou je hier Tesseract.js gebruiken
           ocrText = null; // Placeholder
         } catch (error) {
-          console.warn('OCR extraction failed:', error);
+          // OCR extraction failed
         }
 
         newFiles.push({
@@ -78,7 +79,7 @@ export default function UploadDropzone({
       onFilesUploaded(newFiles);
 
     } catch (error) {
-      console.error('File processing error:', error);
+      // File processing error occurred
     } finally {
       setUploading(false);
     }
@@ -166,9 +167,11 @@ export default function UploadDropzone({
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {uploadedFiles.map((uploadedFile, index) => (
               <div key={index} className="relative group">
-                <img
+                <Image
                   src={uploadedFile.preview}
                   alt={`Preview ${index + 1}`}
+                  width={200}
+                  height={96}
                   className="w-full h-24 object-cover rounded-lg border"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">

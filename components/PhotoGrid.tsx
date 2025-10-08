@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
+import Image from 'next/image';
 
 interface Photo {
   id: number;
@@ -102,9 +103,11 @@ export default function PhotoGrid({
             <Card key={photo.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <CardContent className="p-0">
                 <div className="relative group">
-                  <img
+                  <Image
                     src={photo.url}
                     alt={`${photo.categorie} foto`}
+                    width={300}
+                    height={128}
                     className="w-full h-32 object-cover cursor-pointer"
                     onClick={() => setSelectedPhoto(photo)}
                   />
@@ -185,9 +188,11 @@ export default function PhotoGrid({
                 </Button>
               </div>
 
-              <img
+              <Image
                 src={selectedPhoto.url}
                 alt={`${selectedPhoto.categorie} foto`}
+                width={600}
+                height={400}
                 className="w-full h-auto rounded-lg mb-4"
               />
 

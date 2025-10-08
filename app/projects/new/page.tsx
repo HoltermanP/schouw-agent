@@ -78,7 +78,7 @@ export default function NewProject() {
         try {
           await fetch('/api/upload', { method: 'POST', body: formData });
         } catch (e) {
-          console.error('Upload mislukt voor', category, e);
+          // Upload failed for category
         }
       }
 
@@ -263,7 +263,7 @@ export default function NewProject() {
                   <div key={utility} className="flex items-center space-x-2">
                     <Checkbox
                       id={utility}
-                      checked={watchedUtilities?.includes(utility) || false}
+                      checked={watchedUtilities?.includes(utility as 'elektra' | 'gas' | 'water') || false}
                       onCheckedChange={(checked) => 
                         handleUtilityChange(utility, checked as boolean)
                       }

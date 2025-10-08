@@ -10,7 +10,7 @@ export async function extractTextFromImage(file: File): Promise<string | null> {
     
     return text.trim() || null;
   } catch (error) {
-    console.error('OCR extraction error:', error);
+    // OCR extraction error occurred
     return null;
   }
 }

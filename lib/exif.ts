@@ -48,7 +48,7 @@ export async function extractEXIFData(file: File): Promise<EXIFData | null> {
 
     return result;
   } catch (error) {
-    console.error('EXIF extraction error:', error);
+    // EXIF extraction error occurred
     return null;
   }
 }

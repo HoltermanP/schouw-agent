@@ -83,7 +83,7 @@ export default function ProjectDetail() {
 
   useEffect(() => {
     fetchProject();
-  }, [projectId]);
+  }, [projectId, fetchProject]);
 
   const fetchProject = async () => {
     try {

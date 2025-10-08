@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('PDF generation error:', error);
+    // PDF generation error occurred
     return NextResponse.json(
       {
         error: 'PDF generatie gefaald',

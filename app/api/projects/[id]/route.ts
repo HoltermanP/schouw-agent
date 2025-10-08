@@ -36,7 +36,7 @@ export async function GET(
     return NextResponse.json({ project });
 
   } catch (error) {
-    console.error('Project fetch error:', error);
+    // Project fetch error occurred
     return NextResponse.json(
       { error: 'Project ophalen gefaald' },
       { status: 500 }

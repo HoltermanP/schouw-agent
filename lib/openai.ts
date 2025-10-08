@@ -43,7 +43,7 @@ export async function analyzeProjectWithAI(
     // Controleer of we een echte API key hebben
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey || apiKey === 'sk-test-key-placeholder') {
-      console.log('Using fallback AI analysis (no real API key)');
+      // Using fallback AI analysis (no real API key)
       return generateFallbackAnalysis(projectData, photoMetadata);
     }
 
@@ -165,7 +165,7 @@ Geef je antwoord als JSON in het volgende formaat:
     return AIAnalysis.parse(analysis);
 
   } catch (error) {
-    console.error('OpenAI API error:', error);
+    // OpenAI API error occurred
     
     // Fallback response bij fout
     return generateFallbackAnalysis(projectData, photoMetadata);
@@ -347,7 +347,7 @@ Schrijf een compleet, professioneel schouwrapport.`;
 
     return completion.choices[0]?.message?.content || 'Rapport kon niet worden gegenereerd.';
   } catch (error) {
-    console.error('Report generation error:', error);
+    // Report generation error occurred
     return 'Rapportgeneratie gefaald. Handmatige invoer vereist.';
   }
 }

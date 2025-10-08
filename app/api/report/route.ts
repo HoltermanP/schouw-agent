@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Report save error:', error);
+    // Report save error occurred
     
     if (error instanceof Error && error.name === 'ZodError') {
       return NextResponse.json(
@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ reports });
 
   } catch (error) {
-    console.error('Reports fetch error:', error);
+    // Reports fetch error occurred
     return NextResponse.json(
       { error: 'Rapporten ophalen gefaald' },
       { status: 500 }
