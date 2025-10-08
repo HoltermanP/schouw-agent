@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { AIAnalysis } from './schema';
+import type { AIAnalysis } from './schema';
 import { ALL_CHECKLISTS } from './checklist';
 
 const openai = new OpenAI({
