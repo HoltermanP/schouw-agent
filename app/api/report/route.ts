@@ -21,16 +21,21 @@ export async function POST(request: NextRequest) {
     }
 
     // Maak of update rapport
-    const report = await prisma.report.upsert({
-      where: { projectId: validatedData.projectId },
-      update: {
-        content: validatedData.content
-      },
-      create: {
-        projectId: validatedData.projectId,
-        content: validatedData.content
-      }
+    const existingReport = await prisma.report.findFirst({
+      where: { projectId: validatedData.projectId }
     });
+
+    const report = existingReport 
+      ? await prisma.report.update({
+          where: { id: existingReport.id },
+          data: { content: validatedData.content }
+        })
+      : await prisma.report.create({
+          data: {
+            projectId: validatedData.projectId,
+            content: validatedData.content
+          }
+        });
 
     return NextResponse.json({
       success: true,
